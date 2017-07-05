@@ -63,6 +63,10 @@ module.exports = {
             template: path.join(__dirname, 'src', 'index.ejs')
         }),
 
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        }),
+
         // Provide context to Angular's use of System.import
         // https://github.com/angular/angular/issues/11580
         // https://github.com/angular/angular/issues/14898 (modification for angular 4)

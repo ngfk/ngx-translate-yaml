@@ -5,8 +5,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 
+declare const process: any;
+
 export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http);
+    let base = process.env.NODE_ENV === 'production'
+        ? 'https://ngfk.github.io/ngx-translate-yaml/assets/i18n/'
+        : './assets/i18n/';
+
+    return new TranslateHttpLoader(http, base, '.json');
 }
 
 @NgModule({
