@@ -57,7 +57,10 @@ module.exports = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor'] }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'index.html')
+            base: process.env.NODE_ENV === 'production'
+                ? 'https://ngfk.github.io/ngx-translate-yaml/'
+                : '/',
+            template: path.join(__dirname, 'src', 'index.ejs')
         }),
 
         // Provide context to Angular's use of System.import
