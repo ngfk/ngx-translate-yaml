@@ -1,2 +1,2 @@
 
-HELLO: Hello!
+!import ./en/hello.yml

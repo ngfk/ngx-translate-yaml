@@ -3,9 +3,9 @@ const fs                = require('fs');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let languages = fs.readdirSync(path.join(__dirname, 'src', 'i18n')).map(file => {
-    return path.join(__dirname, 'src', 'i18n', file);
-});
+let languages = fs.readdirSync(path.join(__dirname, 'src', 'i18n'))
+    .map(file => path.join(__dirname, 'src', 'i18n', file))
+    .filter(path => !fs.statSync(path).isDirectory());
 
 module.exports = {
 
@@ -19,13 +19,15 @@ module.exports = {
     },
 
     entry: {
-        i18n: [...languages],
         vendor: [
             'core-js/es6',
             'core-js/es7/reflect',
             'zone.js/dist/zone'
         ],
-        main: path.join(__dirname, 'src', 'main.ts')
+        main: [
+            ...languages,
+            path.join(__dirname, 'src', 'main.ts')
+        ]
     },
 
     output: {
