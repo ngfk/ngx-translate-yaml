@@ -1,2 +1,2 @@
 
-HELLO: !import ./en/value.yml
+HELLO: !import ./value.yml
